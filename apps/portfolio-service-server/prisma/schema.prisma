@@ -1,0 +1,65 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Project {
+  createdAt          DateTime  @default(now())
+  createdAtProject   DateTime?
+  description        String?
+  descriptionProject String?
+  id                 String    @id @default(cuid())
+  link               String?
+  linkProject        String?
+  title              String?
+  titleProject       String?
+  updatedAt          DateTime  @updatedAt
+  updatedAtProject   DateTime?
+  viewCount          Int?
+}
+
+model BlogPost {
+  author      String?
+  bannerImage Json?
+  content     String?
+  createdAt   DateTime  @default(now())
+  cta         String?
+  id          String    @id @default(cuid())
+  images      Json?
+  publishedAt DateTime?
+  title       String?
+  updatedAt   DateTime  @updatedAt
+  viewCount   Int?
+}
+
+model Comment {
+  author           String?
+  authorComment    String?
+  content          String?
+  contentComment   String?
+  createdAt        DateTime  @default(now())
+  createdAtComment DateTime?
+  id               String    @id @default(cuid())
+  post             String?
+  postComment      String?
+  updatedAt        DateTime  @updatedAt
+}
+
+model User {
+  createdAt    DateTime @default(now())
+  email        String?  @unique
+  firstName    String?
+  id           String   @id @default(cuid())
+  lastName     String?
+  name         String?
+  nameUser     String?
+  password     String
+  passwordUser String?
+  roles        Json
+  updatedAt    DateTime @updatedAt
+  username     String   @unique
+}
